@@ -6,7 +6,7 @@ import json
 app = Flask(__name__)
 data_store = []  # Temporary in-memory store
 
-@app.route('/webhook', methods=['POST'])
+@app.route('/webhook-post', methods=['POST'])
 def webhook():
     if request.is_json:
         json_data = request.get_json()
@@ -18,7 +18,7 @@ def webhook():
         return jsonify({"status": "stored"}), 200
     return jsonify({"status": "error", "message": "Invalid JSON"}), 400
 
-@app.route('/webhook-get', methods=['GET'])
+@app.route('/webhook', methods=['GET'])
 def webhook_get():
     data = request.args.to_dict()
     
